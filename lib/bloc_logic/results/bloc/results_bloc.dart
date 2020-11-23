@@ -35,6 +35,7 @@ class ResultsBloc extends Bloc<ResultsEvent, ResultsState> {
           var decode = jsonDecode(response.body);
           yield LoadingResult();
           var output_url = decode['output_url'];
+          // await videoOutput(selectedImage, output_url);
           Future.delayed(Duration(milliseconds: 300));
           yield ResultsLoaded(GeneratedImage(output_url));
         } else if (response.statusCode == 400) {
@@ -69,6 +70,22 @@ class ResultsBloc extends Bloc<ResultsEvent, ResultsState> {
             'http://cartoonate.oss-ap-southeast-1.aliyuncs.com/original/$filename'
       },
     );
+    String png = selectedImage.filename + '.png';
+    'http://cartoonate.oss-ap-southeast-1.aliyuncs.com/generated/$png';
+    await put(png,
+        headers: {'Content-type': 'image/png'}, body: selectedImage.fileBytes);
     return response;
+  }
+
+  videoOutput(SelectedImage selectedImage, String output_url) async {
+    String filename = selectedImage.filename + '.png';
+    String url = 'http://34.71.66.151:5000/post';
+    String videoLink =
+        'http://cartoonate.oss-ap-southeast-1.aliyuncs.com/video/3.mp4';
+    Response response =
+        await post(url, body: {'image': output_url, 'video': videoLink});
+
+    print('video testing: ${response.statusCode}');
+    print(jsonDecode(response.body));
   }
 }

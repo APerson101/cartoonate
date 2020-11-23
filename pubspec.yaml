@@ -42,6 +42,7 @@ dependencies:
   mime_type: 0.3.2
   http_parser: 3.1.4
   random_string: ^2.1.0
+  network_image_to_byte: 0.0.1
   
   
 

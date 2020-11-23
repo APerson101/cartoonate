@@ -78,20 +78,8 @@ class Results extends StatelessWidget {
                                   ))))
                     ],
                   )),
-                  Column(
-                    children: [
-                      Container(
-                        color: Colors.green,
-                      ),
-                      Text('donwload, share, change video'),
-                      RaisedButton(
-                        child: Text("change video"),
-                        onPressed: () {
-                          BlocProvider.of<UploadBloc>(context)
-                              .add(SelectVideo());
-                        },
-                      )
-                    ],
+                  Center(
+                    child: Text('Video and various art styles coming soon'),
                   )
                 ],
               ),
