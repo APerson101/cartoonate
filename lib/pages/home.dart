@@ -65,17 +65,22 @@ class Left extends StatelessWidget {
             flex: 2,
             child: Text(
               'Select Image',
-              style: TextStyle(fontSize: 18, color: Colors.white),
+              style: TextStyle(fontSize: 24, color: Colors.white),
             ),
           ),
           Flexible(flex: 3, child: Image.asset('assets/images/r.png')),
           Flexible(
-            flex: 1,
-            child: Text(
-              'Select Headshot for best result. Format accepted are : .jpg and .png',
-              style: TextStyle(fontSize: 14, color: Colors.white),
-            ),
-          ),
+              flex: 1,
+              child: Padding(
+                padding: EdgeInsets.only(
+                  left: 20,
+                ),
+                child: Text(
+                  'Select Headshot style image similar to the above for best result. Format accepted are : .jpg and .png',
+                  style: TextStyle(fontSize: 14, color: Colors.white),
+                  textAlign: TextAlign.center,
+                ),
+              )),
           Flexible(
             flex: 1,
             child: Text(
@@ -144,16 +149,22 @@ class Right extends StatelessWidget {
         }
         if (state is UploadInitial) {
           image = Image.asset('assets/video/Upload.gif');
-          button = RaisedButton(
-            onPressed: () {
-              BlocProvider.of<UploadBloc>(context).add(SelectPhoto());
-            },
-            child: Text(
-              'Upload',
-              style: TextStyle(fontSize: 15),
-            ),
-            color: Colors.green,
-          );
+          button = Card(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.0)),
+              elevation: 5.0,
+              child: ConstrainedBox(
+                  constraints: BoxConstraints.tight(const Size(200, 50)),
+                  child: RaisedButton(
+                    onPressed: () {
+                      BlocProvider.of<UploadBloc>(context).add(SelectPhoto());
+                    },
+                    child: Text(
+                      'Upload',
+                      style: TextStyle(fontSize: 18),
+                    ),
+                    color: Colors.green,
+                  )));
         }
 
         if (state is UploadLoading) {

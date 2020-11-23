@@ -7,36 +7,43 @@ class Login extends StatelessWidget {
   const Login();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.amberAccent[40],
-      body: Padding(
-        padding:
-            EdgeInsets.only(top: 60.0, bottom: 60.0, left: 120.0, right: 120.0),
-        child: Card(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0)),
-          elevation: 5.0,
-          child: Container(
-            color: Colors.black38,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Expanded(
-                    child: Container(
-                  // child: Center(
-                  child: Image.asset('assets/video/Welcome.gif',
-                      // 'https://cartoonate.oss-ap-southeast-1.aliyuncs.com/welcomegif/Welcome.gif',
-                      fit: BoxFit.cover),
-                  // ),
-                  // color: Colors.blueAccent,
-                )),
-                Expanded(child: LoginForm()),
-              ],
+    print('the width is: ' + MediaQuery.of(context).size.width.toString());
+    var largeScreen =
+        EdgeInsets.only(top: 40.0, bottom: 40.0, left: 100.0, right: 100.0);
+    return MediaQuery.of(context).size.width < 900
+        ? Container(
+            alignment: Alignment.center,
+            child:
+                SafeArea(child: Center(child: Text('Please view on Desktop'))))
+        : Scaffold(
+            backgroundColor: Colors.amberAccent[40],
+            body: Padding(
+              padding: largeScreen,
+              child: Card(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(40.0)),
+                elevation: 5.0,
+                child: Container(
+                  color: Colors.black38,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Expanded(
+                          child: Container(
+                        // child: Center(
+                        child: Image.asset('assets/video/Welcome.gif',
+                            // 'https://cartoonate.oss-ap-southeast-1.aliyuncs.com/welcomegif/Welcome.gif',
+                            fit: BoxFit.cover),
+                        // ),
+                        // color: Colors.blueAccent,
+                      )),
+                      Expanded(child: LoginForm()),
+                    ],
+                  ),
+                ),
+              ),
             ),
-          ),
-        ),
-      ),
-    );
+          );
   }
 }
 

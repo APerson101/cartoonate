@@ -45,24 +45,14 @@ class Content extends StatelessWidget {
                   child: Scaffold(
                       appBar: AppBar(
                           actions: [
-                            PopupMenuButton(
-                              itemBuilder: (BuildContext context) => [
-                                PopupMenuItem(
-                                  value: 1,
-                                  child: Text("logout"),
-                                )
-                              ],
-                              onSelected: (val) {
-                                BlocProvider.of<LoadprofileBloc>(context)
-                                    .add(Logout());
-                              },
-                              icon: state is LoadprofileSucess
-                                  ? ImageIcon(
-                                      state.user.profilePic.image,
-                                      size: 40,
-                                    )
-                                  : Icon(Icons.person),
-                            ),
+                            RaisedButton(
+                                child: Text('Logout',
+                                    style: TextStyle(color: Colors.white)),
+                                color: Colors.red,
+                                onPressed: () {
+                                  BlocProvider.of<LoadprofileBloc>(context)
+                                      .add(Logout());
+                                }),
                           ],
                           title: const Text('Cartoonate'),
                           backgroundColor: Color(0xFF333333)),
@@ -107,13 +97,13 @@ class Content extends StatelessWidget {
         inactiveColor: Colors.grey,
         activeContentColor: Colors.white,
       ),
-      PersistentBottomNavBarItem(
-        icon: Icon(Icons.history),
-        title: ("History"),
-        activeColor: Color(0x2069e0),
-        inactiveColor: Colors.grey,
-        activeContentColor: Colors.white,
-      ),
+      // PersistentBottomNavBarItem(
+      //   icon: Icon(Icons.history),
+      //   title: ("History"),
+      //   activeColor: Color(0x2069e0),
+      //   inactiveColor: Colors.grey,
+      //   activeContentColor: Colors.white,
+      // ),
       PersistentBottomNavBarItem(
         icon: Icon(Icons.share),
         title: ("Social"),
@@ -134,7 +124,7 @@ class Content extends StatelessWidget {
   List<Widget> buildScreens() {
     return [
       Home(),
-      History(),
+      // History(),
       Social(),
       Profile(),
     ];

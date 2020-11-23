@@ -18,7 +18,7 @@ class ResultsLoadedPg extends StatelessWidget {
         child: Scaffold(
           body: Padding(
             padding: EdgeInsets.only(bottom: 80),
-            child: Results(generatedImage),
+            child: Center(child: Results(generatedImage)),
           ),
         ));
   }
@@ -107,41 +107,38 @@ class BadImage extends StatelessWidget {
       color: Colors.white,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.center,
+        // crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          // Flexible(
-          // flex: 2,
-          // child:
-          Image.asset('assets/video/badimage.gif'),
-          // ),
-          // Flexible(
-          // flex: 1,
-          // child:
-          Text(
-            'Bad Image Selected, try again!',
-            style: TextStyle(fontSize: 16),
+          Flexible(
+            flex: 2,
+            child: Image.asset('assets/video/badimage.gif'),
           ),
-          // ),
-          // Flexible(
-          //   flex: 1,
-          //   child:
-          Card(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20.0)),
-              elevation: 5.0,
-              child: ConstrainedBox(
-                constraints: BoxConstraints.tight(const Size(200, 50)),
-                child: RaisedButton(
-                    child: Text('Change'),
-                    color: Colors.green,
-                    onPressed: () {
-                      Navigator.pushReplacement(context,
-                          MaterialPageRoute(builder: (context) {
-                        return Home();
-                      }));
-                    }),
-              )),
-          // )
+          Flexible(
+            flex: 1,
+            child: Text(
+              'Bad Image Selected, try again!',
+              style: TextStyle(fontSize: 16),
+            ),
+          ),
+          Flexible(
+            flex: 1,
+            child: Card(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0)),
+                elevation: 5.0,
+                child: ConstrainedBox(
+                  constraints: BoxConstraints.tight(const Size(200, 50)),
+                  child: RaisedButton(
+                      child: Text('Change'),
+                      color: Colors.green,
+                      onPressed: () {
+                        Navigator.pushReplacement(context,
+                            MaterialPageRoute(builder: (context) {
+                          return Home();
+                        }));
+                      }),
+                )),
+          )
         ],
       ),
     );
