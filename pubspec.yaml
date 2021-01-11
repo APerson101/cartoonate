@@ -43,6 +43,7 @@ dependencies:
   http_parser: 3.1.4
   random_string: ^2.1.0
   network_image_to_byte: 0.0.1
+  async: ^2.4.2
   
   
 

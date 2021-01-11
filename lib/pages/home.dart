@@ -3,6 +3,8 @@ import 'package:cartoonate/bloc_logic/upload_bloc/upload.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'art.dart';
+import 'artStyles.dart';
 import 'picConfirmed.dart';
 import 'results.dart';
 
@@ -29,7 +31,8 @@ class _Home extends StatelessWidget {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(builder: (context) {
-              return ResultsPage(state.selectedImage);
+              // return ArtStyles();
+              return ResultsPage(state.selectedImage, state.selectedArtStyle);
             }),
           );
       },
@@ -103,7 +106,7 @@ class Right extends StatelessWidget {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(builder: (context) {
-              return ResultsPage(state.selectedImage);
+              return ResultsPage(state.selectedImage, state.selectedArtStyle);
             }),
           );
       },
@@ -136,15 +139,58 @@ class Right extends StatelessWidget {
                   child: ConstrainedBox(
                     constraints: BoxConstraints.tight(const Size(200, 50)),
                     child: RaisedButton(
-                      child: Text('Convert'),
+                      child: Text('Next'),
                       color: Colors.green,
                       onPressed: () {
                         BlocProvider.of<UploadBloc>(context)
-                            .add(UploadProceed());
+                            .add(UploadProceed(null));
                       },
                     ),
                   ))
             ],
+          );
+        }
+
+        if (state is SelectArt) {
+          return Container(
+            child: SafeArea(
+              child: Center(
+                child: ButtonBar(
+                  children: [
+                    RaisedButton(
+                      child: Text('zombie'),
+                      onPressed: () {
+                        buttonPressed(ArtStylesOptions.zombie, context);
+                      },
+                    ),
+                    RaisedButton(
+                      child: Text('Emoji'),
+                      onPressed: () {
+                        buttonPressed(ArtStylesOptions.emoji, context);
+                      },
+                    ),
+                    RaisedButton(
+                      child: Text('Halloween'),
+                      onPressed: () {
+                        buttonPressed(ArtStylesOptions.halloween, context);
+                      },
+                    ),
+                    RaisedButton(
+                      child: Text('Disney'),
+                      onPressed: () {
+                        buttonPressed(ArtStylesOptions.disney, context);
+                      },
+                    ),
+                    RaisedButton(
+                      child: Text('DisneyPlus'),
+                      onPressed: () {
+                        buttonPressed(ArtStylesOptions.disneyplus, context);
+                      },
+                    )
+                  ],
+                ),
+              ),
+            ),
           );
         }
         if (state is UploadInitial) {
@@ -212,51 +258,55 @@ class Right extends StatelessWidget {
       },
     );
   }
-}
 
-class PicSelected extends StatelessWidget {
-  final Image selectedImage;
-  const PicSelected(this.selectedImage);
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Color(0xFF444444),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(
-            'Confirm Selected Image',
-            style: TextStyle(fontSize: 18, color: Colors.white),
-          ),
-          AnimatedSwitcher(
-              duration: Duration(milliseconds: 300),
-              switchInCurve: Curves.easeIn,
-              child: SizedBox(
-                width: 200,
-                child: selectedImage,
-              )),
-          ButtonBar(
-            alignment: MainAxisAlignment.center,
-            children: [
-              RaisedButton(
-                child: Text('change image'),
-                color: Colors.greenAccent,
-                onPressed: () {
-                  BlocProvider.of<UploadBloc>(context).add(SelectPhoto());
-                },
-              ),
-              RaisedButton(
-                child: Text('Cartoonate'),
-                color: Color(0x2069e0),
-                onPressed: () {
-                  BlocProvider.of<UploadBloc>(context).add(UploadProceed());
-                },
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
+  buttonPressed(ArtStylesOptions option, BuildContext context) {
+    BlocProvider.of<UploadBloc>(context).add(UploadProceed(option));
   }
 }
+
+// class PicSelected extends StatelessWidget {
+//   final Image selectedImage;
+//   const PicSelected(this.selectedImage);
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       color: Color(0xFF444444),
+//       child: Column(
+//         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//         crossAxisAlignment: CrossAxisAlignment.center,
+//         children: [
+//           Text(
+//             'Confirm Selected Image',
+//             style: TextStyle(fontSize: 18, color: Colors.white),
+//           ),
+//           AnimatedSwitcher(
+//               duration: Duration(milliseconds: 300),
+//               switchInCurve: Curves.easeIn,
+//               child: SizedBox(
+//                 width: 200,
+//                 child: selectedImage,
+//               )),
+//           ButtonBar(
+//             alignment: MainAxisAlignment.center,
+//             children: [
+//               RaisedButton(
+//                 child: Text('change image'),
+//                 color: Colors.greenAccent,
+//                 onPressed: () {
+//                   BlocProvider.of<UploadBloc>(context).add(SelectPhoto());
+//                 },
+//               ),
+//               RaisedButton(
+//                 child: Text('Cartoonate'),
+//                 color: Color(0x2069e0),
+//                 onPressed: () {
+//                   BlocProvider.of<UploadBloc>(context).add(UploadProceed());
+//                 },
+//               ),
+//             ],
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }

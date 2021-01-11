@@ -34,9 +34,7 @@ class Results extends StatelessWidget {
         return Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) {
-            return ArtStylePage(
-              state.selectedImage,
-            );
+            return Container();
           }),
         );
       }

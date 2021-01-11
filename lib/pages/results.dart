@@ -2,6 +2,7 @@ import 'dart:html';
 
 import 'package:cartoonate/bloc_logic/results/bloc/results.dart';
 import 'package:cartoonate/helper/selectedImage.dart';
+import 'package:cartoonate/pages/art.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -10,13 +11,14 @@ import 'resultsloaded.dart';
 
 class ResultsPage extends StatelessWidget {
   final SelectedImage selectedImage;
-  ResultsPage(this.selectedImage);
+  final ArtStylesOptions selectedArt;
+  ResultsPage(this.selectedImage, this.selectedArt);
   @override
   Widget build(BuildContext context) {
     return BlocProvider<ResultsBloc>(
       create: (context) {
         var r = ResultsBloc();
-        r.add(StartProcess(selectedImage));
+        r.add(StartProcess(selectedImage, this.selectedArt));
         return r;
       },
       child: Scaffold(

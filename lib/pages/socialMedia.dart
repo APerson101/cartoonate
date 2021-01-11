@@ -21,7 +21,18 @@ class _SocialState extends State<Social> {
           return ite;
         }),
       ],
+      // child: Container(
+      //     color: Color(0xFF444444),
+      //     child: SafeArea(
+      //       child: Center(
+      //         child: Text(
+      //           'SOCIAL PAGE',
+      //           style: TextStyle(color: Colors.white),
+      //         ),
+      //       ),
+      //     )
       child: Decider(),
+      // )
     );
   }
 }

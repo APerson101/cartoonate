@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:cartoonate/helper/selectedImage.dart';
+import 'package:cartoonate/pages/art.dart';
 import 'package:flutter/material.dart';
 
 abstract class UploadState {}
@@ -11,6 +12,8 @@ class UploadLoaded extends UploadState {}
 
 class UploadLoading extends UploadState {}
 
+class SelectArt extends UploadState {}
+
 class ImageSelected extends UploadState {
   final SelectedImage selectedImage;
 
@@ -20,9 +23,10 @@ class ImageSelected extends UploadState {
 class UploadFailed extends UploadState {}
 
 class PicConfirmed extends UploadState {
+  ArtStylesOptions selectedArtStyle;
   final SelectedImage selectedImage;
 
-  PicConfirmed(this.selectedImage);
+  PicConfirmed(this.selectedImage, this.selectedArtStyle);
 }
 
 class VideoSelected extends UploadState {
